@@ -260,11 +260,11 @@ counter = 0
 while counter < 10: # CHANGE 10 TO HOWEVER MANY LINES YOU WANT TO GENERATE
     line = '\n' + mk.generate_markov_text()
 
-    #remove punctuation
+    # REMOVE PUNCTUATION
     exclude = ['"','(',')',';'] 
     line = ''.join(ch for ch in line if ch not in exclude)
 
-    #make line lowercase, add period at end
+    # MAKE LINE LOWERCASE, ADD PERIOD AT END
     line = line.lower() + "." 
     
     print (line)
