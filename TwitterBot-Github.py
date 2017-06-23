@@ -6,9 +6,11 @@ Created on Fri Jun 23 17:26:17 2017
 """
 # TWITTER BOT CODE
 
-# I BELIEVE THAT YOU ARE AWARE OF CREATING TWITTER ACCOUNT, TWITTER APP AND GETTING YOUR CREDENTIALS.
-# ONCE YOU HAVE THOSE, YOU CAN DO THE FOLOWING CODE
-
+""" I BELIEVE THAT YOU ARE AWARE OF CREATING TWITTER ACCOUNT, TWITTER APP AND GETTING YOUR CREDENTIALS. 
+    ONCE YOU HAVE THOSE, YOU CAN DO THE FOLOWING CODE """
+    
+# THE FOLLOWING CODE SHOULD BE SELF EXPLANATORY AND HOPE YOU'LL UNDERSTAND AND LIKE IT
+    
 # IMPORTING LIBRARIES 
 import tweepy
 import os 
@@ -67,6 +69,7 @@ def new_trends():
             currenttrends1 = currenttrends1[:6]
             for trend in currenttrends1:
                 names.append(trend["name"])
+                
     except tweepy.TweepError as e:
         if("88" in e.reason):
             print("You've reached to the limit of new trends and will have to wait for 15 minutes")
@@ -80,8 +83,8 @@ def new_trends():
 
 #######################################################################################################################
 
-# CALLING TREND FUNCTION AND STORING THE TRENDS IN A VARIABLE BECAUSE WE DON'T WANT TO CALL TRENDS EVERYTIME WE RETWEET
-# TO DO MANUALLY
+""" CALLING TREND FUNCTION AND STORING THE TRENDS IN A VARIABLE BECAUSE WE DON'T WANT TO CALL TRENDS EVERYTIME WE RETWEET
+    IF YOU WANT TO DO MANUALLY JUST REMOVE THE HASHTAG AND RUN THE CODE BELOW """
 #t = new_trends()
 
 ########################################################################################################################
@@ -96,10 +99,10 @@ def do_retweet_follow_like():
     t = new_trends()
     counter = 0
     try:
+        # WE WILL RETWEET, FOLLOW AND FAVOURITE FOR EACH OF 3 DIFFERENT TRENDS
         while(counter < 3):
             counter += 1
             random_trend = randint(0, len(t))
-            #for trend in t:
             # TO GET USERS FROM THE RANDOM TREND 
             for tweet in tweepy.Cursor(api.search, q = t[random_trend], lang = "en").items(1):
                 try:
@@ -134,7 +137,6 @@ def do_retweet_follow_like():
                         print("Favorite Count is: " + str(fav_count))
                         print("I have already liked this tweet")
                        
-                    
                 # HERE EXCEPTION IS IN TWEEPERROR FORMAT AND E.REASON IS IN STRING FORMAT. HENCE WE USE DOUBLE QUOTES        
                 except tweepy.TweepError as e:
                     if("327" in e.reason):
@@ -182,10 +184,9 @@ def msg_to_follower():
         #return print("Done!")
 
     print("Sleeping for 1 hour!")
-    sleep(60)
+    sleep(3600)
     msg_to_follower()
-# TO PRINT STRING AND INTEGER TOGETHER
-#print("Hi %d" %(1))        
+
 # MAXIMUM TWEETS ARE 295 for quaraterly period.
 
 ######################################################################################################################
@@ -236,7 +237,7 @@ def post():
 while True:
     post()
     print("Tweet posted!")
-    sleep(20) # 1 DAY
+    sleep(86400) # 1 DAY
 ##############################################################################################################
 
 ################################################################################################################
@@ -251,12 +252,12 @@ import markovgen
 org = open("bbob.txt")
 outfile = open("bbob_markov.txt", "w")
 
-# Repeatable Markov'd text generator
+# REPEATABLE MARKOV' TEXT GENERATOR
 newtext = []
 mk = markovgen.Markov(org)
 
 counter = 0
-while counter < 10: # Change 10 to however many lines you want to generate
+while counter < 10: # CHANGE 10 TO HOWEVER MANY LINES YOU WANT TO GENERATE
     line = '\n' + mk.generate_markov_text()
 
     #remove punctuation
@@ -269,10 +270,9 @@ while counter < 10: # Change 10 to however many lines you want to generate
     print (line)
     newtext.append(line)
     counter = counter + 1
-    
 
 for aline in newtext:
-    outfile.write(aline) #makes text file line by line
+    outfile.write(aline) # MAKES TEXT FILE LINE BY LINE
 
 outfile.close()
 org.close()
@@ -323,7 +323,7 @@ def runTime():
 def replybot():
     while True:
         runTime()
-    sleep(60)
+    sleep(60) # 1 HR
     replybot()
     
 ################################################################################################################    
