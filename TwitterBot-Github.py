@@ -294,7 +294,7 @@ def linenum():
     inte = randint(0, len(tweettext))
     return inte
 
-# this is the function that does most of the work of the bot
+# THIS IS THE FUNCTION THAT DOES MOST OF THE WORK OF THE BOT
 def runTime():
 
     # GETTING ALL THE USER FROM OUR TIMELINE AND SELECTING 5 OF THEM
