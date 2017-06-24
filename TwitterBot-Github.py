@@ -193,6 +193,36 @@ def msg_to_follower():
 
 ######################################################################################################################
 
+# THE BOT THAT FOLLOWS THE USERS THAT ARE FOLLOWING THE BOT
+
+def follow():
+    while True:
+    
+        # GETTING ALL FOLLOWERS
+        followers = api.followers_ids()
+        
+        # GETTING YOUR ID
+        me = api.me().id
+        
+        # CHECKING IF I AM FOLLOWING MY FOLLOWERS AND IF NOT THEN I AM FOLLOWING
+        for i in followers:
+            if(api.show_friendship(me, target_id = i)[0].following == False):
+                api.create_friendship(i)
+                message = "Your profile seems interesting. Hope you don't mind, if I follow you!"
+                api.send_direct_message(i, text = message)
+                print("I followed: " + api.show_friendship(me, target_id = i)[1].screen_name)
+    
+            else:
+                print("I have already followed: " + api.show_friendship(me, target_id = i)[1].screen_name)
+        
+        print("Sleeping for 1 hour!")
+        sleep(3600)
+        follow()
+        
+######################################################################################################################
+
+######################################################################################################################
+
 # CALL THE FUNCTION IF YOU WANT NEW TRENDS
 t = new_trends()
 
@@ -201,7 +231,10 @@ do_retweet_follow_like()
 
 # CALL THE FUNCTION IF YOU WANT TO MESSAGE TO YOUR FOLLOWERS        
 msg_to_follower() 
-    
+
+# CALL THE FUNCTION IF YOU WANT TO FOLLOW THE USERS WHICH ARE FOLLOWING YOU 
+follow()    
+
 ################################################################################################################
 
 ################################################################################################################
