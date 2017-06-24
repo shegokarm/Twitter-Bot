@@ -193,7 +193,7 @@ def msg_to_follower():
 
 ######################################################################################################################
 
-# THE BOT THAT FOLLOWS THE USERS THAT ARE FOLLOWING THE BOT
+# THE BOT THAT FOLLOWS THE USERS WHICH ARE FOLLOWING THE BOT
 
 def follow():
     while True:
